@@ -3,7 +3,7 @@ import { AnimatedTitle } from "../../Pages/Home/style";
 import { SecondaryButton } from "../Buttons";
 import { ContainerHeader } from "./style";
 
-function NavBar() {
+function NavBar({ message }) {
   const history = useHistory();
 
   return (
@@ -11,8 +11,11 @@ function NavBar() {
       <AnimatedTitle time={1} color={"var(--color-primary)"}>
         Kenzie Hub
       </AnimatedTitle>
-      <SecondaryButton onClick={() => history.push("/")}>
-        Voltar
+      <SecondaryButton onClick={() => { 
+        history.push("/");
+        localStorage.clear();
+        }}>
+        {message || 'Voltar'}
       </SecondaryButton>
     </ContainerHeader>
   );

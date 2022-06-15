@@ -30,7 +30,7 @@ export default createGlobalStyle`
         --grey-0: #f8f9fa;
 
         --feedback-success: #3fe864;
-        --feedback-nefative: #e83f5b;
+        --feedback-negative: #e83f5b;
     }
 
     body {

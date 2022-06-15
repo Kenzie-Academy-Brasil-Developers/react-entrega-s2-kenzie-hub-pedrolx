@@ -1,20 +1,40 @@
-import { Route, Switch } from "react-router-dom";
+import { useState } from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 import Home from "../Pages/Home";
-import Register from "../Pages/Register";
+import Login from "../Pages/Login";
+import RegisterUser from "../Pages/RegisterUser";
+import Dashboard from "../Pages/Dashboard";
 
 function Routes() {
-    return(
-        <Switch>
-            <Route exact path="/">
-                <Home/>
-            </Route>
+  const [auth, setAuth] = useState(false);
+  const [user, setUser] = useState();
+  const history = useHistory();
 
-            <Route path="/register">
-                <Register/>
-            </Route>
+  if (auth) {
+    history.push("/dashboard");
+  } else {
+    history.push("/");
+  }
 
-        </Switch>
-    )
+  return (
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+
+      <Route path="/RegisterUser">
+        <RegisterUser />
+      </Route>
+
+      <Route path="/dashboard">
+        <Dashboard setAuth={setAuth} user={user}/>
+      </Route>
+
+      <Route path="/login">
+        <Login setAuth={setAuth} setUser={setUser}/>
+      </Route>
+    </Switch>
+  );
 }
 
 export default Routes;

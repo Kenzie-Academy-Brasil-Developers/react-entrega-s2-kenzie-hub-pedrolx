@@ -6,12 +6,20 @@ export const ContainerHeader = styled.div`
         align-items: center;
         justify-content: space-between;
 
-        padding: 2rem;
+        padding: 1rem;
 
         width: 100%;
         height: 80px;
 
-        border-bottom: 3px solid var(--grey-2);
+        border-bottom: 2px solid var(--grey-2);
+
+        h1 {
+            font-size: 17px;
+        }
+
+        button {
+            width: 80px;
+        }
     }
 
     @media screen and (min-width: 769px) {

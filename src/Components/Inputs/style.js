@@ -9,7 +9,7 @@ export const StyledDiv = styled.div`
 
     display: flex;
     flex-direction: column;
-
+    align-items: center;
 `
 
 export const StyledInput = styled.input`
@@ -31,11 +31,17 @@ export const StyledInput = styled.input`
 `
 
 export const StyledLabel = styled.label`
+    width: 85%;
+
     margin-left: .5rem;
     margin-top: .1rem;
 
-    font-weight: 200;
+    text-align: justify;
+
+    font-weight: ${(props)=> props.weight};
     font-size: 15px;
+
+    color: ${(props)=> props.color};
 `
 
 export const StyledSelect = styled.select`

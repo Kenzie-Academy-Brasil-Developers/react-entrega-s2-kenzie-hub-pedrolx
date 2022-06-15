@@ -27,7 +27,7 @@ export const MessageContainer = styled.div`
 
     position: fixed;
 
-    top: 27%;
+    top: 30%;
     left: 25%;
   }
 
