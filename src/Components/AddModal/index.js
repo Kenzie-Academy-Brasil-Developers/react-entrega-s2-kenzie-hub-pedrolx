@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AddModal } from "../../Pages/Dashboard/style";
+import { motion } from 'framer-motion';
 
 function AddModalComponent({ setFalse, addTechToList }) {
 
@@ -20,6 +21,12 @@ function AddModalComponent({ setFalse, addTechToList }) {
       });
 
     return(
+      <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: .8 }}
+      >
             <AddModal>
               <header>
                 <AnimatedTitle size={15}>Cadastrar Tecnologia</AnimatedTitle>
@@ -53,6 +60,7 @@ function AddModalComponent({ setFalse, addTechToList }) {
                 </ContainerContent>
               </body>
             </AddModal>
+            </motion.div>
     )
 }
 

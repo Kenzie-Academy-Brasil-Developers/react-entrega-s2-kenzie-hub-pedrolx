@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom";
 import { AnimatedTitle } from "../../Pages/Home/style";
 import { SecondaryButton } from "../Buttons";
 import { ContainerHeader } from "./style";
+import toast, { Toaster } from 'react-hot-toast';
 
 function NavBar({ message }) {
   const history = useHistory();
@@ -12,6 +13,9 @@ function NavBar({ message }) {
         Kenzie Hub
       </AnimatedTitle>
       <SecondaryButton onClick={() => { 
+        toast('Esperamos te ver novamente em breve', {
+          icon: '😉',
+        });
         history.push("/");
         localStorage.clear();
         }}>

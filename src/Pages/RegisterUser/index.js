@@ -15,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../Services/data";
 import { useHistory } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
+import { motion } from 'framer-motion';
 
 function RegisterUser() {
   const history = useHistory();
@@ -34,7 +35,7 @@ function RegisterUser() {
       .then(
         (res) => {
           toast.success(`Obrigado ${newUser.name}. Você será redirecionado(a) a área de login.`);
-          history.push("/login");
+          setTimeout(()=>{history.push("/login")},2500)
         }
       )
       .catch(
@@ -71,90 +72,97 @@ function RegisterUser() {
   });
 
   return (
-    <Container>
-      <NavBar />
-      <ContainerContent onSubmit={handleSubmit(onSubmit)}>
-        <AnimatedTitle>Crie sua conta</AnimatedTitle>
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 1.5 }}
+    >
+      <Container>
+        <NavBar />
+        <ContainerContent onSubmit={handleSubmit(onSubmit)}>
+          <AnimatedTitle>Crie sua conta</AnimatedTitle>
 
-        <AnimatedTitle color={"var(--grey-1)"} weigth={200} size={15}>
-          Rápido e gratis, vamos nessa
-        </AnimatedTitle>
+          <AnimatedTitle color={"var(--grey-1)"} weigth={200} size={15}>
+            Rápido e gratis, vamos nessa
+          </AnimatedTitle>
 
-        <NewInput
-          label={"Nome"}
-          placeholder={"Digite aqui seu nome"}
-          register={register}
-          name={"name"}
-          errors={errors?.name}
-        ></NewInput>
+          <NewInput
+            label={"Nome"}
+            placeholder={"Digite aqui seu nome"}
+            register={register}
+            name={"name"}
+            errors={errors?.name}
+          ></NewInput>
 
-        <NewInput
-          label={"E-mail"}
-          placeholder={"Digite aqui seu email"}
-          register={register}
-          name={"email"}
-          errors={errors?.email}
-        ></NewInput>
+          <NewInput
+            label={"E-mail"}
+            placeholder={"Digite aqui seu email"}
+            register={register}
+            name={"email"}
+            errors={errors?.email}
+          ></NewInput>
 
-        <NewInput
-          type="password"
-          label={"Senha"}
-          placeholder={"Digite aqui sua senha"}
-          register={register}
-          name={"password"}
-          errors={errors?.password}
-        ></NewInput>
+          <NewInput
+            type="password"
+            label={"Senha"}
+            placeholder={"Digite aqui sua senha"}
+            register={register}
+            name={"password"}
+            errors={errors?.password}
+          ></NewInput>
 
-        <NewInput
-          type="password"
-          label={"Confirme a senha"}
-          placeholder={"Confirme sua senha"}
-          register={register}
-          name={"confirmPasword"}
-          errors={errors?.confirmPassword}
-        ></NewInput>
+          <NewInput
+            type="password"
+            label={"Confirme a senha"}
+            placeholder={"Confirme sua senha"}
+            register={register}
+            name={"confirmPasword"}
+            errors={errors?.confirmPassword}
+          ></NewInput>
 
-        <NewInput
-          label={"Bio"}
-          placeholder={"Fale um pouco sobre você."}
-          register={register}
-          name={"bio"}
-          errors={errors?.bio}
-        ></NewInput>
+          <NewInput
+            label={"Bio"}
+            placeholder={"Fale um pouco sobre você."}
+            register={register}
+            name={"bio"}
+            errors={errors?.bio}
+          ></NewInput>
 
-        <NewInput
-          label={"Contato"}
-          placeholder={"Digite um numero para contato"}
-          register={register}
-          name={"contact"}
-          errors={errors?.contact}
-        ></NewInput>
+          <NewInput
+            label={"Contato"}
+            placeholder={"Digite um numero para contato"}
+            register={register}
+            name={"contact"}
+            errors={errors?.contact}
+          ></NewInput>
 
-        <StyledDiv>
-          <StyledLabel>Selecionar módulo</StyledLabel>
-          <StyledSelect {...register("course_module")}>
-            <StyledOption value="Primeiro módulo (Introdução ao Frontend)">
-              Primeiro Módulo
-            </StyledOption>
-            <StyledOption value="Segundo módulo (Frontend Avançado)">
-              Segundo Módulo
-            </StyledOption>
-            <StyledOption value="Terceiro módulo (Introdução ao Backend)">
-              Terceiro Módulo
-            </StyledOption>
-            <StyledOption value="Quarto módulo (Backend Avançado)">
-              Quarto Módulo
-            </StyledOption>
-          </StyledSelect>
-        </StyledDiv>
+          <StyledDiv>
+            <StyledLabel>Selecionar módulo</StyledLabel>
+            <StyledSelect {...register("course_module")}>
+              <StyledOption value="Primeiro módulo (Introdução ao Frontend)">
+                Primeiro Módulo
+              </StyledOption>
+              <StyledOption value="Segundo módulo (Frontend Avançado)">
+                Segundo Módulo
+              </StyledOption>
+              <StyledOption value="Terceiro módulo (Introdução ao Backend)">
+                Terceiro Módulo
+              </StyledOption>
+              <StyledOption value="Quarto módulo (Backend Avançado)">
+                Quarto Módulo
+              </StyledOption>
+            </StyledSelect>
+          </StyledDiv>
 
-        <StyledDiv>
-          <PrimaryButton type="submit" width={"90%"}>
-            Cadastrar
-          </PrimaryButton>
-        </StyledDiv>
-      </ContainerContent>
-    </Container>
+          <StyledDiv>
+            <PrimaryButton type="submit" width={"90%"}>
+              Cadastrar
+            </PrimaryButton>
+          </StyledDiv>
+        </ContainerContent>
+      </Container>
+    </motion.div>
   );
 }
 

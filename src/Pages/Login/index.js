@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../Services/data";
 import toast, { Toaster } from "react-hot-toast";
 import { useHistory } from "react-router-dom";
+import { motion } from 'framer-motion';
 
 function Login({ setAuth, setUser }) {
 
@@ -26,9 +27,12 @@ function Login({ setAuth, setUser }) {
       .then((res) => {
         window.localStorage.clear();
         window.localStorage.setItem("@KenzieHb:token", res.data.token);
-        toast.success("Login realizado!");
-        setUser(res.data);
-        setAuth(true);
+        toast.success("Login realizado! Vamos te redirecionar.");
+        setTimeout(()=>{
+          setUser(res.data);
+          setAuth(true);
+        },2500)
+
       })
       .catch((err) => toast.error("Parece que algo deu errado no login."));
   };
@@ -47,39 +51,46 @@ function Login({ setAuth, setUser }) {
   });
 
   return (
-    <Container>
-      <NavBar />
-      <ContainerContent onSubmit={handleSubmit(handleLogin)}>
-        <AnimatedTitle>Login</AnimatedTitle>
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 1.5 }}
+    >
+      <Container>
+        <NavBar />
+        <ContainerContent onSubmit={handleSubmit(handleLogin)}>
+          <AnimatedTitle>Login</AnimatedTitle>
 
-        <NewInput
-          label={"E-mail"}
-          placeholder={"Digite aqui seu email"}
-          register={register}
-          name="email"
-          errors={errors?.email}
-        ></NewInput>
+          <NewInput
+            label={"E-mail"}
+            placeholder={"Digite aqui seu email"}
+            register={register}
+            name="email"
+            errors={errors?.email}
+          ></NewInput>
 
-        <NewInput
-          label={"Senha"}
-          placeholder={"Digite aqui sua senha"}
-          register={register}
-          name="password"
-          type="password"
-          errors={errors?.password}
-        ></NewInput>
+          <NewInput
+            label={"Senha"}
+            placeholder={"Digite aqui sua senha"}
+            register={register}
+            name="password"
+            type="password"
+            errors={errors?.password}
+          ></NewInput>
 
-        <StyledDiv>
-          <PrimaryButton type="submit" width={"90%"}>
-            Entrar
-          </PrimaryButton>
-        </StyledDiv>
+          <StyledDiv>
+            <PrimaryButton type="submit" width={"90%"}>
+              Entrar
+            </PrimaryButton>
+          </StyledDiv>
 
-        <AnimatedTitle size={13} weigth={500}>Ainda não possui uma conta?</AnimatedTitle>
-        <PrimaryButton width={"81%"} color={"var(--grey-1)"} onClick={()=> history.push("/registerUser")}>Cadastre-se</PrimaryButton>
-      </ContainerContent>
-    </Container>
-  );
+          <AnimatedTitle size={13} weigth={500}>Ainda não possui uma conta?</AnimatedTitle>
+          <PrimaryButton width={"81%"} color={"var(--grey-1)"} onClick={()=> history.push("/registerUser")}>Cadastre-se</PrimaryButton>
+        </ContainerContent>
+      </Container>
+    </motion.div>
+  )
 }
 
 export default Login;

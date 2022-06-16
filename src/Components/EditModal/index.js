@@ -4,11 +4,18 @@ import { ContainerContent } from "../../Pages/RegisterUser/style";
 import { PrimaryButton, SecondaryButton } from "../Buttons";
 import { StyledDiv, StyledInput, StyledLabel, StyledOption, StyledSelect } from "../Inputs/style";
 import { AddModal } from "../../Pages/Dashboard/style";
+import { motion } from 'framer-motion';
 
 function EditModalComponent({ openEditModal, techToEdit, setStatus, editTechOnApi, status }) {
 
 
     return(
+      <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: .8 }}
+      >
             <AddModal>
               <header>
                 <AnimatedTitle size={15}>Detalhes da Tecnologia</AnimatedTitle>
@@ -46,6 +53,7 @@ function EditModalComponent({ openEditModal, techToEdit, setStatus, editTechOnAp
                 </ContainerContent>
               </body>
             </AddModal>
+            </motion.div>
     )
 }
 
